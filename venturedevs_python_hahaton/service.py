@@ -19,15 +19,16 @@ def forecast_to_list(forecast):
 
 
 def get_forecast_file_path(woeid):
-    return (FORECASTS_DIR + "/" + str(woeid)+ "/" + datetime.now().strftime('%d-%m-%y'), datetime.now().strftime('%H:%M:%S') + ".csv")
+    now = datetime.now()
+    return (FORECASTS_DIR + "/" + str(woeid) + "/" + now.strftime('%d-%m-%y'), now.strftime('%H:%M:%S') + ".csv")
 
 
 
 
 def save_forecast(forecast, dir, file_name):
 
-    if not os.path.exists(dir):
-        os.makedirs(dir)
+
+    os.makedirs(dir, exist_ok=True)
 
     f = forecast_to_list(forecast)
 
